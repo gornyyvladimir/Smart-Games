@@ -3,6 +3,10 @@
     padding-top: 16px
 }
 
+.profile__info {
+    cursor: pointer;
+}
+
 .profile__avatar {
     display: inline-block;
     vertical-align: middle;
@@ -12,7 +16,7 @@
     background-image: url(../img/avatar.png);
     background-repeat: no-repeat;
     background-position: center;
-    border: 1px solid #222222;
+    border: 1px solid #a4a9b0;
     border-radius: 50%;
 }
 
@@ -31,21 +35,12 @@
         border: solid #a4a9b0;
         border-width: 0 1px 1px 0;
         transform: rotate(45deg);
-    } // width: 4px;
-    // height: 4px;
-    // background-color: red;
-    .profile__menu {
-        // display: none;
-    }
-    &:hover {
-        .profile__menu {
-            display: block;
-        }
     }
 }
 
 .profile__menu {
     .list-unstyled();
+    display: none;
     font-size: 14px;
     position: absolute;
     top: 45px;
@@ -74,4 +69,8 @@
         text-decoration: none;
         color: inherit;
     }
+}
+
+.profile__menu--is-active {
+    display: block;
 }
