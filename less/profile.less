@@ -1,18 +1,29 @@
 .profile {
     font-size: 0;
-    padding-top: 16px
+    padding-top: 16px;
+    position: relative;
 }
 
-.profile__info {
-    cursor: pointer;
+.profile__dropdown {
+    display: block;
+    position: relative;
+    padding-right: 15px;
+        &:after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right: 0;
+        width: 5px;
+        height: 5px;
+        border: solid #a4a9b0;
+        border-width: 0 1px 1px 0;
+        transform: rotate(45deg);
+    }
 }
 
 .profile__avatar {
-    display: inline-block;
-    vertical-align: middle;
     width: 37px;
     height: 37px;
-    margin-right: 4px;
     background-image: url(../img/avatar.png);
     background-repeat: no-repeat;
     background-position: center;
@@ -20,30 +31,12 @@
     border-radius: 50%;
 }
 
-.profile__arrow {
-    display: inline-block;
-    vertical-align: middle;
-    position: relative;
-    width: 11px;
-    height: 8px;
-    &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 5px;
-        padding: 2px;
-        border: solid #a4a9b0;
-        border-width: 0 1px 1px 0;
-        transform: rotate(45deg);
-    }
-}
-
 .profile__menu {
     .list-unstyled();
     display: none;
     font-size: 14px;
     position: absolute;
-    top: 45px;
+    top: 76px;
     right: 0;
     width: 143px;
     background-color: #eff3f6;

@@ -1,6 +1,7 @@
-const info = document.querySelector('.profile__info');
+const dropdown = document.querySelector('.profile__dropdown');
 const menu = document.querySelector('.profile__menu');
 
-info.onclick = () => menu.classList.toggle('profile__menu--is-active');
-
-menu.onclick = (event) => event.stopPropagation();
+dropdown.onclick = (event) => {
+	event.preventDefault();
+	menu.classList.toggle('profile__menu--is-active');
+};
