@@ -1,0 +1,121 @@
+{
+  "games": [
+    {
+      "img": "/img/divinity-original-sin-2.jpg",
+      "title": "Divinity: Original Sin II",
+      "developer": "Larian Studios",
+      "score": 8.7,
+      "reviews": {
+        "summary": 2,
+        "number": 10118
+      },
+      "mainGenre": "RPG",
+      "releaseDate": "2017-09-14",
+      "status": 2
+    },
+    {
+      "img": "/img/bayonetta.jpg",
+      "title": "Bayonetta",
+      "developer": "PlatinumGames",
+      "score": 8.4,
+      "reviews": {
+        "summary": 2,
+        "number": 4123
+      },
+      "mainGenre": "Action",
+      "releaseDate": "2017-04-11",
+      "status": 2
+    },
+    {
+      "img": "/img/mass-effect-andromeda.jpg",
+      "title": "Mass Effect: Andromeda",
+      "developer": "BioWare",
+      "score": 5.0,
+      "reviews": {
+        "summary": 1,
+        "number": 13458
+      },
+      "mainGenre": "RPG",
+      "releaseDate": "2017-03-21", 
+      "status": 1
+    },
+    {
+      "img": "/img/prey.jpg",
+      "title": "Prey",
+      "developer": "Arkane Studios",
+      "score": 7.9,
+      "reviews": {
+        "summary": 2,
+        "number": 5490
+      },
+      "mainGenre": "Action",
+      "releaseDate": "2017-05-04", 
+      "status": 1
+    },
+    {
+      "img": "/img/flatout-3.jpg",
+      "title": "Flatout 3: Chaos & Destruction",
+      "developer": "Team 6 Studios",
+      "score": 2.5,
+      "reviews": {
+        "summary": 0,
+        "number": 1540
+      },
+      "mainGenre": "Racing",
+      "releaseDate": "2011-12-13", 
+      "status": 1
+    },
+    {
+      "img": "/img/yonder.jpg",
+      "title": "Yonder: The Cloud Catcher Chronicles",
+      "developer": "Prideful Sloth",
+      "score": 7.3,
+      "reviews": {
+        "summary": 2,
+        "number": 50
+      },
+      "mainGenre": "Adventure",
+      "releaseDate": "2017-07-18", 
+      "status": 1
+    },
+    {
+      "img": "/img/regions-of-ruin.jpg",
+      "title": "Regions Of Ruin",
+      "developer": "Vox",
+      "score": null,
+      "reviews": {
+        "summary": null,
+        "number": 0
+      },
+      "mainGenre": "Action",
+      "releaseDate": "2017-10-05", 
+      "status": 0
+    },
+    {
+      "img": "/img/nier-automata.jpg",
+      "title": "NieR: Automata",
+      "developer": "Square Enix",
+      "score": 8.4,
+      "reviews": {
+        "summary": 2,
+        "number": 15000
+      },
+      "mainGenre": "RPG",
+      "releaseDate": "2017-03-17", 
+      "status": 1
+    },
+    {
+      "img": "/img/cuphead.jpg",
+      "title": "Cuphead",
+      "developer": "StudioMDHR Entertainment Inc.",
+      "score": 8.3,
+      "reviews": {
+        "summary": 2,
+        "number": 6343
+      },
+      "mainGenre": "Action",
+      "releaseDate": "2017-09-29", 
+      "status": 1
+    }
+  ]
+}
