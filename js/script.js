@@ -1,15 +1,17 @@
 const dropdown = document.querySelector('.profile__dropdown');
 const menu = document.querySelector('.profile__menu');
+const gameTableContainer = document.querySelector('.games-table');
 
+let scoreTitle;
+
+//Меню
 dropdown.onclick = (event) => {
     event.preventDefault();
     menu.classList.toggle('profile__menu--is-active');
 };
 
+//Заполнение таблицы
 document.addEventListener('DOMContentLoaded', getJSON);
-
-
-const gameTableContainer = document.querySelector('.games-table');
 let data;
 
 function getJSON() {
@@ -32,6 +34,11 @@ function getJSON() {
             clearContainer(gameTableContainer);
             const table = createTable(data);
             showData(gameTableContainer, table);
+
+            scoreTitle = document.querySelector('.games-table__score');
+            scoreTitle.addEventListener('click', sortByScore);
+
+            console.log(scoreTitle);
         }
 
     }
@@ -41,6 +48,9 @@ function getJSON() {
     //Значок загрузки можно воткнуть сюда
 
 }
+
+// scoreTitle.addEventListener('click', sortByScore);
+console.log(scoreTitle);
 
 function clearContainer(container) {
     // очистить всё
@@ -53,6 +63,7 @@ function showData(container, element) {
     console.log(container);
     console.log(element);
     container.appendChild(element);
+    console.log("Я тут");
 }
 
 function createTable(data) {
@@ -113,8 +124,8 @@ function createTable(data) {
 
         const img = document.createElement('IMG');
         img.classList.add('games-table__image');
-        // img.src = game.img;
-        img.src = 'img/layer-1.png';
+        img.src = game.img;
+        // img.src = 'img/layer-1.png';
         img.alt = game.title;
         const info = document.createElement('DIV');
         info.classList.add('games-table__info');
@@ -138,7 +149,11 @@ function createTable(data) {
         const mark = document.createElement('DIV');
         mark.classList.add('games-table__mark');
         if (game.score) {
-            mark.appendChild(document.createTextNode(game.score));
+
+            if (game.score - Math.floor(game.score) === 0)
+                mark.appendChild(document.createTextNode(`${game.score}.0`));
+            else
+                mark.appendChild(document.createTextNode(game.score));
 
             if (game.score > 3 && game.score < 6)
                 mark.classList.add('games-table__mark--yellow');
@@ -180,12 +195,12 @@ function createTable(data) {
         const f = Math.floor(game.reviews.number / 1000);
         let h = game.reviews.number % 1000;
         h = h.toString();
-        h = h.length < 3 ? h + '00' : h; 
+        h = h.length < 3 ? h + '00' : h;
 
-        if(f === 0)
-        	count.appendChild(document.createTextNode(`(${game.reviews.number})`));	        
+        if (f === 0)
+            count.appendChild(document.createTextNode(`(${game.reviews.number})`));
         else
-			count.appendChild(document.createTextNode(`(${f},${h})`));	        
+            count.appendChild(document.createTextNode(`(${f},${h})`));
 
         tdReview.appendChild(feedback);
         if (game.reviews.number > 0)
@@ -219,8 +234,8 @@ function createTable(data) {
         //console.log(date.toLocaleString("en-GB", options));
 
         // tdRelease.appendChild(
-        // 	document.createTextNode(date.toLocaleString("en-GB", options))
-        // 	);
+        //  document.createTextNode(date.toLocaleString("en-GB", options))
+        //  );
 
         tdRelease.appendChild(document.createTextNode(dt));
 
@@ -239,7 +254,7 @@ function createTable(data) {
                 break;
             case 2:
                 statusSale.appendChild(document.createTextNode('in library'));
-                // statusSale.classList.add('games-table__status-sale--blue');        	
+                // statusSale.classList.add('games-table__status-sale--blue');          
                 break;
         }
 
@@ -298,4 +313,43 @@ function createTable(data) {
 
     // document.body.appendChild(table);
     return table;
+}
+
+
+
+//сортировка по клику 
+// const scoreTitle = document.querySelector('.games-table__score');
+
+let sortFlag = true;
+
+
+function sortByScore() {
+
+    let marks = document.querySelectorAll('.games-table__mark');
+    marks = [].slice.call(marks);
+
+    marks.sort((a, b) => {
+        let x = Number(a.innerHTML);
+        let y = Number(b.innerHTML);
+
+        if (isNaN(x))
+            return -1
+        if (isNaN(y))
+            return 1
+
+        return Number(a.innerHTML) - Number(b.innerHTML);
+    });
+
+    const tbody = gameTableContainer.querySelector('tbody');
+    const thead = tbody.firstElementChild;
+
+    clearContainer(tbody);
+
+    //возвращаем заголовок
+    tbody.appendChild(thead);
+
+    marks.forEach((mark) => {
+        const currentRow = mark.parentElement.parentElement;
+        tbody.appendChild(currentRow);
+    });
 }
