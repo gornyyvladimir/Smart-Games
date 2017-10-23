@@ -248,7 +248,7 @@ function createTable(data) {
 
         tdStatus.appendChild(statusSale);
 
-        tdIcons = document.createElement('TD');
+        const tdIcons = document.createElement('TD');
         tdIcons.classList.add('games-table__icons-content');
         const icon0 = document.createElement('I');
         icon0.className = 'fa fa-gamepad';
