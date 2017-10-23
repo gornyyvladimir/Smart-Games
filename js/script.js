@@ -80,6 +80,7 @@ function createTable(data) {
 
     const th1 = document.createElement('TH');
     th1.classList.add('games-table__score');
+    th1.classList.add('games-table__score--sort');
     th1.appendChild(document.createTextNode('Score'));
 
     const th2 = document.createElement('TH');
