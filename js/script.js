@@ -320,7 +320,31 @@ function createTable(data) {
 //сортировка по клику 
 // const scoreTitle = document.querySelector('.games-table__score');
 
-let sortFlag = true;
+let sortInvert = false;
+
+const sortAsc = (a, b) => {
+    let x = Number(a.innerHTML);
+    let y = Number(b.innerHTML);
+
+    if (isNaN(x))
+        return -1
+    if (isNaN(y))
+        return 1
+
+    return Number(a.innerHTML) - Number(b.innerHTML);
+};
+
+const sortDesc = (a, b) => {
+    let x = Number(a.innerHTML);
+    let y = Number(b.innerHTML);
+
+    if (isNaN(x))
+        return 1
+    if (isNaN(y))
+        return -1
+
+    return Number(b.innerHTML) - Number(a.innerHTML);
+};
 
 
 function sortByScore() {
@@ -328,17 +352,10 @@ function sortByScore() {
     let marks = document.querySelectorAll('.games-table__mark');
     marks = [].slice.call(marks);
 
-    marks.sort((a, b) => {
-        let x = Number(a.innerHTML);
-        let y = Number(b.innerHTML);
-
-        if (isNaN(x))
-            return -1
-        if (isNaN(y))
-            return 1
-
-        return Number(a.innerHTML) - Number(b.innerHTML);
-    });
+    if(sortInvert)
+        marks.sort(sortDesc);
+    else
+        marks.sort(sortAsc);
 
     const tbody = gameTableContainer.querySelector('tbody');
     const thead = tbody.firstElementChild;
@@ -352,4 +369,6 @@ function sortByScore() {
         const currentRow = mark.parentElement.parentElement;
         tbody.appendChild(currentRow);
     });
+
+    sortInvert = !sortInvert;
 }
