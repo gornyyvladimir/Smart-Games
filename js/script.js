@@ -1,8 +1,5 @@
 const dropdown = document.querySelector('.profile__dropdown');
 const menu = document.querySelector('.profile__menu');
-const gameTableContainer = document.querySelector('.games-table');
-
-let scoreTitle;
 
 //Меню
 dropdown.onclick = (event) => {
@@ -10,12 +7,14 @@ dropdown.onclick = (event) => {
     menu.classList.toggle('profile__menu--is-active');
 };
 
-//Заполнение таблицы
-document.addEventListener('DOMContentLoaded', getJSON);
-let data;
+document.addEventListener('DOMContentLoaded', getData);
 
-function getJSON() {
+const gameTableContainer = document.querySelector('.games-table');
 
+//Получить данные и вставить на страницу
+function getData() {
+
+    let data;
     const xhr = new XMLHttpRequest();
 
     xhr.open('GET', 'data.json');
@@ -24,21 +23,27 @@ function getJSON() {
         if (xhr.readyState != 4) return;
         if (xhr.status != 200) {
             // обработать ошибку
-            alert(xhr.status + ': ' + xhr.statusText);
+            // alert(xhr.status + ': ' + xhr.statusText);
+            const error = document.createElement('H1');
+            error.classList.add('games-table__error');
+            error.appendChild(document.createTextNode('Sorry :( ' + xhr.status + ': ' + xhr.statusText));
+            gameTableContainer.appendChild(error);
         } else {
             try {
                 data = JSON.parse(xhr.responseText);
             } catch (e) {
-                alert("Некорректный ответ " + e.message);
+                const error = document.createElement('H1');
+                error.classList.add('games-table__error');
+                error.appendChild(document.createTextNode('Wrong data :( ' + e.message));
+                gameTableContainer.appendChild(error);
+                // alert("Некорректный ответ " + e.message);
             }
-            clearContainer(gameTableContainer);
-            const table = createTable(data);
-            showData(gameTableContainer, table);
+            //Заполняем таблицу
+            gameTableContainer.appendChild(createTable(data));
 
-            scoreTitle = document.querySelector('.games-table__score');
+            //Вешаем обработчик на Score
+            const scoreTitle = document.querySelector('.games-table__score');
             scoreTitle.addEventListener('click', sortByScore);
-
-            console.log(scoreTitle);
         }
 
     }
@@ -49,9 +54,7 @@ function getJSON() {
 
 }
 
-// scoreTitle.addEventListener('click', sortByScore);
-console.log(scoreTitle);
-
+//очитска контейнера
 function clearContainer(container) {
     // очистить всё
     while (container.firstChild) {
@@ -59,61 +62,59 @@ function clearContainer(container) {
     }
 }
 
-function showData(container, element) {
-    console.log(container);
-    console.log(element);
-    container.appendChild(element);
-    console.log("Я тут");
-}
-
+//создание таблицы из полученных данных
 function createTable(data) {
-    // console.log(data);
 
+    //создать тиблицу
     const table = document.createElement('TABLE');
     table.classList.add('games-table__table');
 
+    //создать tbody и первую строку с заголовками 
     const tbody = document.createElement('TBODY');
     const trHead = document.createElement('TR');
 
+    //создание заголовков
+    const th0 = document.createElement('TH');
+    th0.classList.add('games-table__title');
+    th0.appendChild(document.createTextNode('Title'));
+
     const th1 = document.createElement('TH');
-    th1.classList.add('games-table__title');
-    th1.appendChild(document.createTextNode('Title'));
+    th1.classList.add('games-table__score');
+    th1.appendChild(document.createTextNode('Score'));
 
     const th2 = document.createElement('TH');
-    th2.classList.add('games-table__score');
-    th2.appendChild(document.createTextNode('Score'));
+    th2.classList.add('games-table__review');
+    th2.appendChild(document.createTextNode('Reviews'));
 
     const th3 = document.createElement('TH');
-    th3.classList.add('games-table__review');
-    th3.appendChild(document.createTextNode('Reviews'));
+    th3.classList.add('games-table__genre');
+    th3.appendChild(document.createTextNode('Main Genre'));
 
     const th4 = document.createElement('TH');
-    th4.classList.add('games-table__genre');
-    th4.appendChild(document.createTextNode('Main Genre'));
+    th4.classList.add('games-table__release-date');
+    th4.appendChild(document.createTextNode('Release Date'));
 
     const th5 = document.createElement('TH');
-    th5.classList.add('games-table__release-date');
-    th5.appendChild(document.createTextNode('Release Date'));
+    th5.classList.add('games-table__status');
+    th5.appendChild(document.createTextNode('Status'));
 
     const th6 = document.createElement('TH');
-    th6.classList.add('games-table__status');
-    th6.appendChild(document.createTextNode('Status'));
+    th6.classList.add('games-table__icons');
 
-    const th7 = document.createElement('TH');
-    th7.classList.add('games-table__icons');
-
+    //добавление заголвков в строку
+    trHead.appendChild(th0);
     trHead.appendChild(th1);
     trHead.appendChild(th2);
     trHead.appendChild(th3);
     trHead.appendChild(th4);
     trHead.appendChild(th5);
     trHead.appendChild(th6);
-    trHead.appendChild(th7);
 
     tbody.appendChild(trHead);
     table.appendChild(tbody);
 
 
+    //получаем массив с данными
     const games = data.games;
 
     games.forEach((game) => {
@@ -125,7 +126,6 @@ function createTable(data) {
         const img = document.createElement('IMG');
         img.classList.add('games-table__image');
         img.src = game.img;
-        // img.src = 'img/layer-1.png';
         img.alt = game.title;
         const info = document.createElement('DIV');
         info.classList.add('games-table__info');
@@ -148,6 +148,7 @@ function createTable(data) {
         tdScore.classList.add('games-table__score-content');
         const mark = document.createElement('DIV');
         mark.classList.add('games-table__mark');
+        //ставим цвет оценке
         if (game.score) {
 
             if (game.score - Math.floor(game.score) === 0)
@@ -155,7 +156,7 @@ function createTable(data) {
             else
                 mark.appendChild(document.createTextNode(game.score));
 
-            if (game.score > 3 && game.score < 6)
+            if (game.score >= 3 && game.score < 6)
                 mark.classList.add('games-table__mark--yellow');
             if (game.score >= 0 && game.score < 3)
                 mark.classList.add('games-table__mark--red');
@@ -190,8 +191,8 @@ function createTable(data) {
 
         const count = document.createElement('SPAN');
         count.classList.add('games-table__review-count');
-        //count.appendChild(document.createTextNode(`(${game.reviews.number})`));
 
+        //форматируем вывод количества оценок
         const f = Math.floor(game.reviews.number / 1000);
         let h = game.reviews.number % 1000;
         h = h.toString();
@@ -216,26 +217,12 @@ function createTable(data) {
 
         const date = new Date(Date.parse(game.releaseDate));
 
-        // const options = {
-        //     month: "short",
-        //     day: "numeric",
-        //     year: "numeric"
-        // };
-
+        //форматируем вывод даты
         const month = date.toLocaleString("en-GB", { month: "short" });
         const day = date.getDate();
         const year = date.getFullYear();
 
         const dt = `${day} ${month}, ${year}`;
-
-        // console.log(day);
-
-
-        //console.log(date.toLocaleString("en-GB", options));
-
-        // tdRelease.appendChild(
-        //  document.createTextNode(date.toLocaleString("en-GB", options))
-        //  );
 
         tdRelease.appendChild(document.createTextNode(dt));
 
@@ -311,15 +298,12 @@ function createTable(data) {
         tbody.appendChild(tr);
     });
 
-    // document.body.appendChild(table);
     return table;
 }
 
 
 
 //сортировка по клику 
-// const scoreTitle = document.querySelector('.games-table__score');
-
 let sortInvert = false;
 
 const sortAsc = (a, b) => {
@@ -352,7 +336,7 @@ function sortByScore() {
     let marks = document.querySelectorAll('.games-table__mark');
     marks = [].slice.call(marks);
 
-    if(sortInvert)
+    if (sortInvert)
         marks.sort(sortDesc);
     else
         marks.sort(sortAsc);
