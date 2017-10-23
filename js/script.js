@@ -338,9 +338,9 @@ function sortByScore() {
     marks = [].slice.call(marks);
 
     if (sortInvert)
-        marks.sort(sortDesc);
-    else
         marks.sort(sortAsc);
+    else
+        marks.sort(sortDesc);
 
     const tbody = gameTableContainer.querySelector('tbody');
     const thead = tbody.firstElementChild;
