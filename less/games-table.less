@@ -1,7 +1,6 @@
 //Mobile
 .games-table {
     .container();
-    box-sizing: border-box;
     margin-top: 49px;
     margin-bottom: 145px;
 }
@@ -111,6 +110,10 @@
             content: "Status";
         }
     }
+
+    .games-table__icons-content {
+        padding: 0;
+    }
 }
 
 .games-table__info {
@@ -208,12 +211,15 @@
 }
 
 .games-table__icons-content {
-    padding-left: 15px;
+    // padding-left: 15px;
     text-align: center;
     .fa {
         color: #bac4d3;
         margin-right: 20px;
         vertical-align: middle;
+        &:last-child {
+            margin: 0;
+        }
     }
     .fa-usd {
         font-size: 23px;
@@ -222,7 +228,7 @@
         margin-right: 31px;
     }
     .fa-gamepad {
-        padding-left: 5px;
+        // padding-left: 5px;
         padding-bottom: 4px;
         font-size: 30px;
         line-height: 44px;
@@ -383,6 +389,10 @@
             width: 165px;
         }
 
+        .games-table__icons {
+            width: 150px;
+        }
+
         .games-table__title-content {
             padding-top: 10px;
             padding-left: 30px;
@@ -407,24 +417,41 @@
         .games-table__mark {
             margin: 0;
         }
+
+        .games-table__icons-content {
+            padding-right: 30px;
+        }
     }
 
     .games-table__icons-content {
-        padding-right: 130px;
         text-align: left;
-        padding-right: 30px;
         .fa {
             display: inline-block;
             margin-right: 20px;
             vertical-align: middle;
-            &:last-child {
-                margin: 0;
-            }
+        }
+
+        .fa-usd {
+            font-size: 23px;
+            line-height: 35px;
+            padding-left: 13px;
+            margin-right: 31px;
+        }
+        .fa-gamepad {
+            padding-left: 5px;
+            padding-bottom: 4px;
+            font-size: 30px;
+            line-height: 44px;
+        }
+        .fa-cog {
+            font-size: 23px;
+            line-height: 35px;
+        }
+        .fa-share-alt {
+            font-size: 22px;
+            line-height: 33px;
         }
     }
-
-
-
 
     .games-table__score--sort {
         &:before {
