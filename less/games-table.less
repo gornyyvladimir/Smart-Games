@@ -7,6 +7,10 @@
     border-radius: 4px;
 }
 
+.games-table__sort-btn {
+    display: none;
+}
+
 .games-table__table {
     width: 100%;
     table-layout: fixed;
@@ -213,6 +217,7 @@
         border-radius: 0;
     }
     .games-table__sort-btn {
+        display: block;
         position: relative;
         background: none;
         border: none;
@@ -322,6 +327,77 @@
         .games-table__icons-content {
             padding-left: 15px;
             text-align: center;
+        }
+    }
+}
+
+@media @tablet-widths {
+    .games-table__sort-btn {
+        display: none;
+    }
+
+    .games-table__table {
+        display: table;
+        width: 100%;
+        text-align: center; // table-layout: fixed;
+        border: 1px solid #dee1e4;
+        background-color: #fff;
+        tbody {
+            display: table-row-group;
+        }
+        tr {
+            display: table-row;
+            border: none;
+            background: none;
+            &:first-child {
+                display: table-row;
+            }
+        }
+        th {
+            display: table-cell;
+            border-bottom: 1px solid #dee1e4;
+        }
+        td {
+            display: table-cell;
+            padding-left: 15px;
+            padding-right: 15px;
+            border-top: 1px solid #dee1e4;
+            &:before {
+                content: "" !important;
+            }
+        }
+
+        .games-table__title {
+            width: 200px;
+        }
+
+        .games-table__title-content {
+            img {
+                display: block;
+            }
+            .games-table__info {
+                display: block;
+                text-align: left;
+            }
+        }
+        .games-table__mark {
+            margin: 0 auto;
+        }
+        .games-table__icons-content {
+            .fa {
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    }
+
+    .games-table__score--sort {
+        &:before {
+            left: 10px;
+        }
+        &:after {
+            left: 10px;
         }
     }
 }
