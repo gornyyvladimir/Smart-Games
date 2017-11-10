@@ -38,7 +38,7 @@ gulp.task("style", function() {
         .pipe(postcss([
             autoprefixer()
         ]))
-        .pipe(csso())
+        // .pipe(csso())
         .pipe(gulp.dest("css"))
         .pipe(server.stream());
 });
