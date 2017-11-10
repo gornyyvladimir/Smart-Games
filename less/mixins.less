@@ -1,6 +1,12 @@
 .container() {
 	width: 1270px;
     margin: 0 auto;
+
+    @media @mobile-widths {
+    	width: auto;
+    	padding-left: 15px;
+    	padding-right: 15px;
+    }
 }
 
 .list-unstyled() {

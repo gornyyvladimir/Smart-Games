@@ -44,6 +44,9 @@ function getData() {
             //Вешаем обработчик на Score
             const scoreTitle = document.querySelector('.games-table__score');
             scoreTitle.addEventListener('click', sortByScore);
+
+            const sortBtn = document.querySelector('.games-table__sort-btn');
+            sortBtn.addEventListener('click', sortByScore);
         }
 
     }

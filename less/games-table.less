@@ -206,3 +206,122 @@
 .games-table__error {
     text-align: center;
 }
+
+@media @mobile-widths {
+    .games-table {
+        border: none;
+        border-radius: 0;
+    }
+    .games-table__sort-btn {
+        position: relative;
+        background: none;
+        border: none;
+        outline: none;
+        padding: 0;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        color: #7f8fa4;
+        &:before {
+            content: "";
+            position: absolute;
+            top: 13px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 4px 4px 4px;
+            border-color: transparent transparent #8392b2 transparent;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 4px 4px 0 4px;
+            border-color: #8392b2 transparent transparent transparent;
+        }
+    }
+    .games-table__table {
+        display: block;
+        width: auto;
+        background: none;
+        border-radius: 0;
+        tbody {
+            display: block;
+        }
+        th {
+            display: block;
+            width: auto;
+            padding-left: 0;
+            text-align: center;
+            border: none;
+        }
+        tr {
+            display: block;
+            background-color: #ffffff;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border: 1px solid #dee1e4;
+            &:first-child {
+                display: none;
+            }
+        }
+        td {
+            display: block;
+            position: relative;
+            padding-left: 40%;
+            padding-right: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: none;
+            &:before {
+                content: "";
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                font-weight: 700;
+                color: #7f8fa4;
+            }
+        }
+
+        .games-table__title-content {
+            &:before {
+                content: "Title"; // top: 10px;
+            }
+        }
+        .games-table__score-content {
+            &:before {
+                content: "Score";
+            }
+        }
+        .games-table__review-content {
+            &:before {
+                content: "Reviews";
+            }
+        }
+        .games-table__genre-content {
+            &:before {
+                content: "Main Genre";
+            }
+        }
+        .games-table__release-date-content {
+            &:before {
+                content: "Release Date";
+            }
+        }
+        .games-table__status-content {
+            &:before {
+                content: "Status";
+            }
+        }
+        .games-table__icons-content {
+            padding-left: 15px;
+            text-align: center;
+        }
+    }
+}
