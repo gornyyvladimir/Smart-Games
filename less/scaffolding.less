@@ -8,5 +8,8 @@ body {
 
 .hidden {
 	display: none !important;
-	// opacity: 0;
+	@media @desktop-widths {
+		display: inline-block !important;
+		opacity: 0;
+	}
 }
